@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using CombiSystems.Data.EntityFramework;
+using CombiSystems.Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var con1 = builder.Configuration.GetConnectionString("con1");
