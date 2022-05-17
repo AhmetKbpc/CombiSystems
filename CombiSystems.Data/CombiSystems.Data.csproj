@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CombiSystems.Core\CombiSystems.Core.csproj" />
+  </ItemGroup>
+
 </Project>
