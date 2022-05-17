@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombiSystems.Data", "CombiS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombiSystems.Web", "CombiSystems.Web\CombiSystems.Web.csproj", "{F171653C-EF5D-44DA-89C7-0792EF3403A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombiSystems.Web.Core", "CombiSystems.Web.Core\CombiSystems.Web.Core.csproj", "{39241E08-A3C3-4D3D-8A9F-66D6BC97556B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{F171653C-EF5D-44DA-89C7-0792EF3403A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F171653C-EF5D-44DA-89C7-0792EF3403A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F171653C-EF5D-44DA-89C7-0792EF3403A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39241E08-A3C3-4D3D-8A9F-66D6BC97556B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39241E08-A3C3-4D3D-8A9F-66D6BC97556B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39241E08-A3C3-4D3D-8A9F-66D6BC97556B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39241E08-A3C3-4D3D-8A9F-66D6BC97556B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
