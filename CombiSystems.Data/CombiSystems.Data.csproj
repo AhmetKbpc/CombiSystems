@@ -8,7 +8,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\CombiSystems.Core\CombiSystems.Core.csproj" />
-		<ProjectReference Include="..\WissenShop.Core\WissenShop.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
