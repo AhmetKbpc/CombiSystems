@@ -1,206 +1,239 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-
-    <!-- Basic -->
+﻿<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!-- Mobile Meta -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- Site Meta -->
-    <title>Edulogy</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="../../user/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="../../user/images/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet"> 
-	
-    <!-- Custom & Default Styles -->
-	<link rel="stylesheet" href="../../user/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../user/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../user/css/carousel.css">
-    <link rel="stylesheet" href="../../user/css/animate.css">
-    <link rel="stylesheet" href="../../user/style.css">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Your description">
+    <meta name="author" content="Your name">
 
-	<!--[if lt IE 9]>
-		<script src="js/vendor/html5shiv.min.js"></script>
-		<script src="js/vendor/respond.min.js"></script>
-	<![endif]-->
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+    <meta property="og:site_name" content=""> <!-- website name -->
+    <meta property="og:site" content=""> <!-- website link -->
+    <meta property="og:title" content=""> <!-- title shown in the actual shared post -->
+    <meta property="og:description" content=""> <!-- description shown in the actual shared post -->
+    <meta property="og:image" content=""> <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content=""> <!-- where do you want your post to link to -->
+    <meta name="twitter:card" content="summary_large_image"> <!-- to have large image post format in Twitter -->
+    <!-- Webpage Title -->
+    <title>Mark Webpage Title</title>
 
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;family=Poppins:wght@600&amp;display=swap" rel="stylesheet">
+    <link href="../../User/css/bootstrap.css" rel="stylesheet">
+    <link href="../../User/css/fontawesome-all.css" rel="stylesheet">
+    <link href="../../User/css/styles.css" rel="stylesheet">
+
+    <!-- Favicon  -->
+    <link rel="icon" href="../../User/images/favicon.png">
 </head>
-<body>  
 
-  
+<body data-spy="scroll" data-target=".fixed-top">
+    <a href="body" class="back-to-top page-scroll" style="display: none;">Back to Top</a>
 
-    <div id="wrapper" style="">
-        <!-- BEGIN # MODAL LOGIN -->
-        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- Begin # DIV Form -->
-                    <div id="div-forms">
-                        <form id="login-form">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span class="flaticon-add" aria-hidden="true"></span>
-                            </button>
-                            <div class="modal-body">
-                                <input class="form-control" type="text" placeholder="What you are looking for?" required="">
-                            </div>
-                        </form><!-- End # Login Form -->
-                    </div><!-- End # DIV Form -->
-                </div>
-            </div>
-        </div>
-        <!-- END # MODAL LOGIN -->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark top-nav-collapse">
+        <div class="container">
 
-        <header class="header affix-top">
-            <!-- end topbar -->
+            <!-- Image Logo -->
+            <a class="navbar-brand logo-image" href="../../User/index.html"><img src="../../User/images/logo.svg" alt="alternative"></a>
 
-            <div class="container">
-                <nav class="navbar navbar-default yamm">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <div class="logo-normal">
-                            <a class="navbar-brand" href="index.html"><img src="../../user/images/logo.png" alt=""></a>
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Mark</a> -->
+
+            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll active" href="#header">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item page-scroll" href="../../User/project.html">Project Details</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item page-scroll" href="../../User/terms.html">Terms Conditions</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item page-scroll" href="../../User/privacy.html">Privacy Policy</a>
                         </div>
-                    </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <span class="nav-item social-icons">
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-facebook-f fa-stack-1x"></i>
+                        </a>
+                    </span>
+                    <span class="fa-stack">
+                        <a href="#your-link">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-twitter fa-stack-1x"></i>
+                        </a>
+                    </span>
+                </span>
+            </div> <!-- end of navbar-collapse -->
+        </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h1 class="h1-large">I love to create beautiful and efficient websites</h1>
+                        <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
+                        <a class="btn-outline-lg page-scroll" href="#contact"><i class="fas fa-user"></i>Contact Me</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+    <!-- About-->
+    <!-- end of basic-1 -->
+    <!-- end of about -->
+    <!-- Services -->
+    <!-- end of basic-2 -->
+    <!-- end of services -->
+    <!-- Details -->
+    <!-- end of split -->
+    <!-- end of details -->
+    <!-- Projects -->
+    <!-- end of basic-3 -->
+    <!-- end of projects -->
+    <!-- Works -->
+    <!-- end of basic-4 -->
+    <!-- end of works -->
+    <!-- Testimonials -->
+    <!-- end of cards-1 -->
+    <!-- end of testimonials -->
+    <!-- Section Divider -->
+    <div class="container">
 
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="index.html">Home</a></li>
-                            <li class="dropdown yamm-fw yamm-half"><a href="#" data-toggle="dropdown" class="dropdown-toggle active">Mega Menu <b class="fa fa-angle-down"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <div class="yamm-content clearfix">
-                                            <div class="row-fluid">
-                                                <div class="col-md-6 col-sm-6">
-                                                    <h4>Course Pages</h4>
-                                                    <ul>
-                                                        <li><a href="#">Courses Name 01</a></li>
-                                                        <li><a href="#">Courses Name 02</a></li>
-                                                        <li><a href="#">Courses Name 03</a></li>
-                                                        <li><a href="#">Courses Name 04</a></li>
-                                                        <li><a href="#">Courses Name 05</a></li>
-                                                        <li><a href="#">Courses Name 06</a></li>
-                                                        <li><a href="#">Courses Name 07</a></li>
-                                                        <li><a href="#">Courses Name 08</a></li>
-                                                        <li><a href="#">Courses Name 09</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6">
-                                                    <div class="menu-widget text-center">
-                                                        <div class="image-wrap entry">
-                                                            <img src="../../user/upload/course_01.jpg" alt="" class="img-responsive">
-                                                            <div class="magnifier">
-                                                                 <a href="#" title=""><i class="flaticon-add"></i></a>
-                                                            </div>
-                                                        </div><!-- end image-wrap -->
-                                                        <h5><a href="#">Learning Bootstrap Framework</a></h5>
-                                                        <small>$22.00</small>
-                                                        <a href="#" class="menu-button">View Course</a>
-                                                    </div><!-- end widget -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="events.html">Events</a></li>
-                            <li class="dropdown hassubmenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Shop <span class="fa fa-angle-down"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="shop.html">Shop Layout</a></li>
-                                    <li><a href="shop-single.html">Shop Single</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown hassubmenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blog <span class="fa fa-angle-down"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="blog.html">Blog Right Sidebar</a></li>
-                                    <li><a href="blog-1.html">Blog Left Sidebar</a></li>
-                                    <li><a href="blog-2.html">Blog Grid Sidebar</a></li>
-                                    <li><a href="blog-3.html">Blog Grid Fullwidth</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-contact.html">Contact</a></li>
-                            <li class="iconitem"><a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-search"></i></a></li>
-                            <li class="iconitem"><a class="shopicon" href="shop-cart.html"><i class="fa fa-shopping-basket"></i> &nbsp;(0)</a></li>
-                        </ul>
-                    </div>
-                </nav><!-- end navbar -->
-            </div><!-- end container -->
-        </header>
+        @RenderBody()
 
-        <section id="home" class="video-section " style="height: 75px;">
-            <div class="overlay"></div>
-            <div class="home-text-wrapper relative container">
-                
-            </div>
-            <div class="slider-bottom">
-                
-            </div>
-        <div id="video_background_video_0" style="z-index: -1; position: absolute; inset: 0px; overflow: hidden;"><video width="0" height="0" autoplay="" loop="" onended="this.play()" style="position: absolute; top: 0px; left: 0px;"><source src="../../user/upload/preview.mp4" type="video/mp4"><source src="../../user/upload/preview.webm" type="video/webm"><source src="../../user/upload/preview.ogg" type="video/ogg"></video></div></section>
+    </div> <!-- end of container -->
+    <!-- end of section divider -->
+    <!-- Questions -->
+    <!-- end of accordion-1 -->
+    <!-- end of questions -->
+    <!-- Contact -->
+    <div id="contact" class="form-1 bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Contact details</h2>
+                    <p class="p-heading">For any type of online project please don't hesitate to get in touch with me. The fastest way is to send me your message using the following email <a class="blue no-line" href="#your-link">contact@domain.com</a></p>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
 
-        
-
-        
-
-       
-        
-            <div class="container">
-                
-
-                    @RenderBody()
-
-            </div><!-- end container -->
-
-
-
-    </div><!-- end wrapper -->
-
-        <footer class="copyrights" style=" position: fixed; bottom: 0px; width: 100%;">
-            <div class="container">
-                <div class="clearfix">
-                    <div class="flex-row-reverse">
-                        <div class="cop-logo">
-                            <a href="#"><img src="../../user/images/logo.png" alt=""></a>
+                    <!-- Contact Form -->
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control-input" id="cname" required="">
+                            <label class="label-control" for="cname">Name</label>
                         </div>
-                    </div>
-
-                    <div class="pull-right">
-                        <div class="footer-links">
-                            <ul class="list-inline">
-                                <li>Design : <a href="https://html.design">HTML.Design</a></li>
-                                <li>Distributed by : <a href="https://themewagon.com/" target="_blank">ThemeWagon</a></li>
-                            </ul>
+                        <div class="form-group">
+                            <input type="email" class="form-control-input" id="cemail" required="">
+                            <label class="label-control" for="cemail">Email</label>
                         </div>
-                    </div>
-                </div>
-            </div><!-- end container -->
-        </footer><!-- end copy -->
+                        <div class="form-group">
+                            <textarea class="form-control-textarea" id="cmessage" required=""></textarea>
+                            <label class="label-control" for="cmessage">Project details</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control-submit-button">Submit</button>
+                        </div>
+                    </form>
+                    <!-- end of contact form -->
 
-    <!-- jQuery Files -->
-    <script src="../../user/js/jquery.min.js"></script>
-    <script src="../../user/js/bootstrap.min.js"></script>
-    <script src="../../user/js/carousel.js"></script>
-    <script src="../../user/js/animate.js"></script>
-    <script src="../../user/js/custom.js"></script>
-    <!-- VIDEO BG PLUGINS -->
-    <script src="../../user/js/videobg.js"></script>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of form-1 -->
+    <!-- end of contact -->
+    <!-- Footer -->
+    <div class="footer bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="social-container">
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-pinterest-p fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-instagram fa-stack-1x"></i>
+                            </a>
+                        </span>
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-youtube fa-stack-1x"></i>
+                            </a>
+                        </span>
+                    </div> <!-- end of social-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of footer -->
+    <!-- end of footer -->
+    <!-- Copyright -->
+    <div class="copyright bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © <a class="no-line" href="#your-link">Your name</a></p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
 
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Distributed By <a class="no-line" href="https://themewagon.com/">Themewagon</a></p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+
+    </div> <!-- end of copyright -->
+    <!-- end of copyright -->
+    <!-- Scripts -->
+    <script src="../../User/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="../../User/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="../../User/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="../../User/js/scripts.js"></script> <!-- Custom scripts -->
 
 </body>
