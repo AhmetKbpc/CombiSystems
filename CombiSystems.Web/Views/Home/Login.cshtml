@@ -16,21 +16,19 @@
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
-                            <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                            <div class="col-md-2 col-lg-2 d-none d-md-block">
+
                             </div>
-                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="col-md-6 col-lg-8 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
                                     <form asp-controller="Home" asp-action="Login" method="post">
 
                                         <div class="d-flex align-items-center mb-3 pb-1">
-                                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                            <span class="h1 fw-bold mb-0">Logo</span>
+                                            <img src="../../User/images/logo.png" width="75px" alt="alternative">
                                         </div>
 
-                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign in</h5>
 
                                         <div class="form-outline mb-4">
                                             <input asp-for="Email" type="email" id="form2Example17" class="form-control form-control-lg" />
@@ -49,7 +47,7 @@
                                         <a asp-controller="Home" asp-action="ResetPassword" class="small text-muted">Forgot password?</a>
 
                                         <p class="mb-5 pb-lg-2" style="color: #393f81;">
-                                            Don't have an account? 
+                                            Don't have an account?
                                             <a asp-controller="Home" asp-action="Register" style="color: #393f81;">Register here</a>
                                         </p>
 

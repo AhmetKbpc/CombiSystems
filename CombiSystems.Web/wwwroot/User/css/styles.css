@@ -384,10 +384,10 @@ input[type='checkbox'] {
 	padding-bottom: 0.125rem;
 }
 
-.navbar .logo-image img {
-    width: 118px;
-	height: 36px;
-}
+	.navbar .logo-image img {
+		width: 65px;
+		height: 65px;
+	}
 
 .navbar .logo-text {
 	color: #ffffff;
