@@ -4,9 +4,9 @@ namespace CombiSystems.Web.ViewModels;
 
 public class LoginViewModel
 {
-    [Display(Name = "Kullanıcı Adı")]
-    [Required(ErrorMessage = "Kullanıcı adı alanı gereklidir.")]
-    public string UserName { get; set; }
+    [Display(Name = "Email")]
+    [Required(ErrorMessage = "Email alanı gereklidir.")]
+    public string Email { get; set; }
 
     [Display(Name = "Şifre")]
     [Required(ErrorMessage = "Şifre alanı gereklidir.")]
