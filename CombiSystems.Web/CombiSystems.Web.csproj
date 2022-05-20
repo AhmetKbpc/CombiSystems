@@ -7,6 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="Properties\launchSettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_WebToolingArtifacts Remove="Properties\launchSettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
@@ -20,6 +28,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include="Properties\launchSettings.json">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	  </None>
 	  <None Include="wwwroot\User\.git\COMMIT_EDITMSG" />
 	  <None Include="wwwroot\User\.git\config" />
 	  <None Include="wwwroot\User\.git\description" />
