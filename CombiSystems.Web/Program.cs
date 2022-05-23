@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using CombiSystems.Data.EntityFramework;
 using CombiSystems.Web.Extensions;
+using CombiSystems.Data.Identity;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 var con1 = builder.Configuration.GetConnectionString("con1");
 builder.Services.AddDbContext<MyContext>(options => options.UseSqlServer(con1));
+
 
 builder.Services.AddServices();
 
@@ -39,3 +42,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
