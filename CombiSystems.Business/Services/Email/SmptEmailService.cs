@@ -1,9 +1,10 @@
 ﻿using System.Net;
 using System.Net.Mail;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using CombiSystems.Core.Configurations;
 using CombiSystems.Core.Emails;
+using Microsoft.Extensions.Configuration;
+
 
 namespace CombiSystems.Business.Services.Email;
 
@@ -11,12 +12,22 @@ public class SmtpEmailService : IEmailService
 {
     private readonly IConfiguration _configuration;
 
+    public EmailSettings EmailSettings { get; }
+
     public SmtpEmailService(IConfiguration configuration)
     {
         _configuration = configuration;
-        //this.EmailSettings = _configuration.GetSection("GmailSettings").Get<EmailSettings>();
+        var emailsettings = _configuration.GetSection("GmailSettings");
+        this.EmailSettings = new EmailSettings
+        {
+            SenderMail = emailsettings["SenderMail"],
+            Password = emailsettings["Password"],
+            Smtp = emailsettings["Smtp"],
+            SmtpPort = Convert.ToInt32(emailsettings["SmtpPort"])
+
+        };
     }
-    public EmailSettings EmailSettings { get; }
+    public EmailSettings emailSettings { get; }
 
     public Task SendMailAsync(MailModel model)
     {
@@ -31,7 +42,6 @@ public class SmtpEmailService : IEmailService
         {
             mail.CC.Add(new MailAddress(cc.Adress, cc.Name));
         }
-
         foreach (var cc in model.Bcc)
         {
             mail.Bcc.Add(new MailAddress(cc.Adress, cc.Name));

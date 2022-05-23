@@ -4,6 +4,7 @@ namespace CombiSystems.Web.ViewModels;
 
 public class LoginViewModel
 {
+    
     [Display(Name = "Email")]
     [Required(ErrorMessage = "Email alanı gereklidir.")]
     public string Email { get; set; }
