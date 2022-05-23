@@ -3,6 +3,7 @@ using CombiSystems.Core.Emails;
 using CombiSystems.Core.Identity;
 using CombiSystems.Data.Identity;
 using CombiSystems.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -51,17 +52,12 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Login()
-    {
-        return View();
-    }
-
     [HttpGet("~/Register")]
     public IActionResult Register()
     {
         if (HttpContext.User.Identity!.IsAuthenticated)
         {
-            return RedirectToAction("Profile", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
         return View();
@@ -86,6 +82,7 @@ public class HomeController : Controller
         };
 
         var result = await _userManager.CreateAsync(user, model.Password);
+
         if (result.Succeeded)
         {
             //Rol Atama
@@ -119,5 +116,84 @@ public class HomeController : Controller
         ModelState.AddModelError(string.Empty, messages);
         return View(model);
     }
+
+
+    public async Task<IActionResult> ConfirmEmail(string userId, string code)
+    {
+        if (userId == null || code == null)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null)
+        {
+            return NotFound($"Unable to load user with ID '{userId}'.");
+        }
+
+        code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+        var result = await _userManager.ConfirmEmailAsync(user, code);
+        ViewBag.StatusMessage =
+            result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+
+        if (result.Succeeded && _userManager.IsInRoleAsync(user, Roles.Passive).Result)
+        {
+            await _userManager.RemoveFromRoleAsync(user, Roles.Passive);
+            await _userManager.AddToRoleAsync(user, Roles.User);
+        }
+
+        return View();
+    }
+
+
+
+    [HttpGet("~/Login")]
+    public IActionResult Login()
+    {
+        if (HttpContext.User.Identity!.IsAuthenticated)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        return View();
+    }
+
+
+    [HttpPost("~/Login")]
+    public async Task<IActionResult> Login(LoginViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var user = await _userManager.FindByNameAsync(model.Email);
+
+        var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, true);
+
+        if (result.Succeeded)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+        else if (result.IsLockedOut)
+        {
+            //TODO: Kilitlenmişse ne yapılacağı
+        }
+        else if (result.RequiresTwoFactor)
+        {
+            //TODO: 2fa yönlendirmesi yapılacak
+        }
+        ModelState.AddModelError(string.Empty, "Incorrect password or username!");
+        return View(model);
+    }
+
+
+    [Authorize]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Home");
+    }
+
+
 
 }

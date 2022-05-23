@@ -1,0 +1,293 @@
+﻿@using CombiSystems.Core.Identity
+<div class=" content-area">
+    <div class="page-header">
+        <h4 class="page-title">Profile</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+    </div>
+    <div class="row" id="user-profile">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xl-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Profile</h2>
+                </div>
+                <div class="card-body p-0">
+                    <div class="card-body bg-primary text-white">
+                        <img src="..\..\assets\images\faces\male\@(Context.User.Identity!.Name).jpeg" alt="" class="profile-img img-responsive center-block">
+                        <a asp-controller="Account" asp-action="ProfileEdit" class="profile-image">
+                            <span class="fa fa-pencil" aria-hidden="true"></span>
+                        </a>
+                        <div class="profile-label mt-3">
+                            <span>@Model.UserProfileVM.Name @Model.UserProfileVM.Surname.ToUpper()</span>
+                        </div>
+
+                        <div class="profile-stars">
+                            @if (Context.User.IsInRole(Roles.Admin))
+                            {
+                                <span class="badge badge-success">Administrator</span>
+                            }
+                            else if (Context.User.IsInRole(Roles.User))
+                            {
+                                <span class="badge badge-primary">User</span>
+                            }
+                            else if (Context.User.IsInRole(Roles.Passive))
+                            {
+                                <span class="badge badge-warning">Passive</span>
+
+                                <br />
+                                <small class="text text-warning">Please confirm your email address</small>
+                            }
+                        </div>
+
+                        <div class="text-muted text-center"><small>Joined </small></div>
+                    </div>
+                    <div class="border-bottom align-items-center">
+                        <div class="card-body">
+                            <div class="profile-details">
+                                <div class="list-group list-group-transparent mb-0 mail-inbox">
+                                    <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                                        <span class="icon mr-3"><i class="fa fa-truck"></i></span>Orders: <span> - </span>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                                        <span class="icon mr-3"><i class="fa fa-comment"></i></span>Posts: <span> - </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <div class="profile-message-btn center-block text-center">
+                            <a href="#" class="btn btn-secondary btn-block">
+                                <i class="fa fa-envelope"></i> Send message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Contact &amp; Personal Info</h2>
+                </div>
+                <div class="card-body">
+                    <div class="media-list">
+
+
+
+                        <div class="media">
+                            <div class="mediaicon bg-secondary">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </div>
+                            <div class="media-body ml-5">
+                                <h6 class="mediafont text-dark mb-0">Email Address</h6><a class="d-block" href="mailto:@Model.UserProfileVM.Email">@Model.UserProfileVM.Email</a>
+                            </div>
+                            <!-- media-body -->
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-8 col-md-12 col-sm-12 col-xl-9">
+            <div class="card clearfix">
+                <div class="card-header">
+                    <h2 class="card-title">User info</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row profile-user-info">
+                        <div class="col-lg-12">
+                            <div class="table-responsive border ">
+                                <table class="table row table-borderless w-100 m-0 ">
+                                    <tbody class="col-lg-6 p-0">
+                                        <tr>
+                                            <td><strong>Full Name :</strong> @Model.UserProfileVM.Name @Model.UserProfileVM.Surname</td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody class="col-lg-6 p-0">
+
+                                        <tr>
+                                            <td><strong>Email :</strong> @Model.UserProfileVM.Email</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Phone :</strong> Tel no gelecek.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card clearfix">
+                <div class="card-header">
+                    <h2 class="card-title">Location</h2>
+                </div>
+                <div class="card-body">
+
+
+                    <div class="pac-card" id="pac-card">
+                        <div id="pac-container">
+                            <input id="pac-input" type="text" placeholder="Konum Ara" />
+                            <input id="btn-ekle" type="button" value="Ekle" />
+                        </div>
+                    </div>
+                    <div id="map"></div>
+                    <div id="infowindow-content">
+                        <span id="place-name" class="title"></span><br />
+                        <span id="place-address"></span>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+    /*
+             * Optional: Makes the sample page fill the window.
+                 */
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+    }
+    #infowindow-content .title {
+        font-weight: bold;
+    }
+    #infowindow-content {
+        display: none;
+    }
+    #map #infowindow-content {
+        display: inline;
+    }
+    .pac-card {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        margin: 10px;
+        padding: 0 0.5em;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
+        font-family: Roboto;
+        padding: 0;
+    }
+    #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+    }
+    .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+    }
+        .pac-controls label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
+    #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+    }
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+    #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+    }
+</style>
+
+
+<script async src="https://maps.googleapis.com/maps/api/js?key=   key   &callback=initMap&libraries=places" defer></script>
+
+
+<script>
+      
+    //GeoLocation
+    var initMap = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    }
+    var showPosition = (position) => {
+        //console.log(position);
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        };
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: pos,
+            zoom: 18,
+            mapTypeControl: false,
+        });
+        const card = document.getElementById("pac-card");
+        const input = document.getElementById("pac-input");
+        const options = {
+            fields: ["formatted_address", "geometry", "name", "place_id"],
+            strictBounds: false,
+            types: ["establishment"],
+        };
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
+        const autocomplete = new google.maps.places.Autocomplete(input, options);
+        autocomplete.bindTo("bounds", map);
+        const infowindow = new google.maps.InfoWindow();
+        const infowindowContent = document.getElementById("infowindow-content");
+        infowindow.setContent(infowindowContent);
+        const marker = new google.maps.Marker({
+            map,
+            anchorPoint: new google.maps.Point(0, -29),
+        });
+        autocomplete.addListener("place_changed", () => {
+            infowindow.close();
+            marker.setVisible(false);
+            const place = autocomplete.getPlace();
+            console.log(place);
+            if (!place.geometry || !place.geometry.location) {
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+            infowindowContent.children["place-name"].textContent = place.name;
+            infowindowContent.children["place-address"].textContent =
+                place.formatted_address;
+            infowindow.open(map, marker);
+        });
+    }
+</script>
