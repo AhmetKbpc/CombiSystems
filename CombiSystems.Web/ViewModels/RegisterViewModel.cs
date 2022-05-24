@@ -38,4 +38,8 @@ public class RegisterViewModel
     [StringLength(10, MinimumLength = 10, ErrorMessage = "Başında 0 olmadan giriniz.")]
     [DataType(DataType.EmailAddress)]
     public string PhoneNumber { get; set; }
+
+    [Required(ErrorMessage = "Adress alanı gereklidir")]
+    [Display(Name = "Adress")]
+    public string Adress { get; set; }
 }

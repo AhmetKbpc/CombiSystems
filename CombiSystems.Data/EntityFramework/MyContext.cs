@@ -29,6 +29,7 @@ public sealed class MyContext : IdentityDbContext<ApplicationUser, ApplicationRo
             entity.Property(x => x.Description).HasMaxLength(120).IsRequired(false);
         });
 
+
         builder.Entity<Category>(entity =>
         {
             entity.HasIndex(x => x.Id);
@@ -39,6 +40,7 @@ public sealed class MyContext : IdentityDbContext<ApplicationUser, ApplicationRo
             entity.Property(x => x.Description).IsRequired(false).HasMaxLength(250);
         });
         
+
         builder.Entity<Product>(entity =>
         {
             entity.HasIndex(x => x.Id);
@@ -50,6 +52,7 @@ public sealed class MyContext : IdentityDbContext<ApplicationUser, ApplicationRo
             entity.Property(x => x.UnitPrice).HasPrecision(8, 2);
         });
     }
+
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
 }

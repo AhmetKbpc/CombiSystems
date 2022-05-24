@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CombiSystems.Data.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20220520131023_Init")]
+    [Migration("20220524084841_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,7 @@ namespace CombiSystems.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValue(new Guid("7729c925-f392-4ae4-8342-8ae79f6619ba"));
+                        .HasDefaultValue(new Guid("2c6f0999-14b1-4295-851a-a98cc1a07773"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -141,6 +141,9 @@ namespace CombiSystems.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Adress")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -174,7 +177,8 @@ namespace CombiSystems.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");

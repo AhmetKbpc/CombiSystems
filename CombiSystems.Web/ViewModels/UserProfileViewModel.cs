@@ -25,6 +25,12 @@ public class UserProfileViewModel
     [EmailAddress]
     public string Email { get; set; }
 
+    public string PhoneNumber { get; set; }
+
 
     public DateTime RegisterDate { get; set; }
+
+    [Required(ErrorMessage = "Adress alanı gereklidir")]
+    [Display(Name = "Adress")]
+    public string? Adress { get; set; }
 }

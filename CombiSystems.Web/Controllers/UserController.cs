@@ -32,7 +32,10 @@ public class UserController : Controller
             {
                 Email = user.Email,
                 Name = user.Name!,
-                Surname = user.Surname!
+                Surname = user.Surname!,
+                PhoneNumber=user.PhoneNumber,
+                Adress=user.Adress
+
             }
         };
 
