@@ -1,153 +1,4 @@
 ﻿@using CombiSystems.Core.Identity
-@*<div class=" content-area">
-    <div class="page-header">
-    <h4 class="page-title">Profile</h4>
-    <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Profile</li>
-    </ol>
-    </div>
-    <div class="row" id="user-profile">
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xl-3">
-    <div class="card">
-    <div class="card-header">
-    <h2 class="card-title">Profile</h2>
-    </div>
-    <div class="card-body p-0">
-    <div class="card-body bg-primary text-white">
-    <img src="..\..\assets\images\faces\male\@(Context.User.Identity!.Name).jpeg" alt="" class="profile-img img-responsive center-block">
-    <a asp-controller="Account" asp-action="ProfileEdit" class="profile-image">
-    <span class="fa fa-pencil" aria-hidden="true"></span>
-    </a>
-    <div class="profile-label mt-3">
-    <span>@Model.UserProfileVM.Name @Model.UserProfileVM.Surname.ToUpper()</span>
-    </div>
-
-    <div class="profile-stars">
-    @if (Context.User.IsInRole(Roles.Admin))
-    {
-    <span class="badge badge-success">Administrator</span>
-    }
-    else if (Context.User.IsInRole(Roles.User))
-    {
-    <span class="badge badge-primary">User</span>
-    }
-    else if (Context.User.IsInRole(Roles.Passive))
-    {
-    <span class="badge badge-warning">Passive</span>
-
-    <br />
-    <small class="text text-warning">Please confirm your email address</small>
-    }
-    </div>
-
-    <div class="text-muted text-center"><small>Joined </small></div>
-    </div>
-    <div class="border-bottom align-items-center">
-    <div class="card-body">
-    <div class="profile-details">
-    <div class="list-group list-group-transparent mb-0 mail-inbox">
-    <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-    <span class="icon mr-3"><i class="fa fa-truck"></i></span>Orders: <span> - </span>
-    </a>
-    <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-    <span class="icon mr-3"><i class="fa fa-comment"></i></span>Posts: <span> - </span>
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="p-3">
-    <div class="profile-message-btn center-block text-center">
-    <a href="#" class="btn btn-secondary btn-block">
-    <i class="fa fa-envelope"></i> Send message
-    </a>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="card">
-    <div class="card-header">
-    <h2 class="card-title">Contact &amp; Personal Info</h2>
-    </div>
-    <div class="card-body">
-    <div class="media-list">
-
-
-
-    <div class="media">
-    <div class="mediaicon bg-secondary">
-    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-    </div>
-    <div class="media-body ml-5">
-    <h6 class="mediafont text-dark mb-0">Email Address</h6><a class="d-block" href="mailto:@Model.UserProfileVM.Email">@Model.UserProfileVM.Email</a>
-    </div>
-    <!-- media-body -->
-    </div>
-
-    </div>
-    </div>
-
-    </div>
-    </div>
-
-    <div class="col-lg-8 col-md-12 col-sm-12 col-xl-9">
-    <div class="card clearfix">
-    <div class="card-header">
-    <h2 class="card-title">User info</h2>
-    </div>
-    <div class="card-body">
-    <div class="row profile-user-info">
-    <div class="col-lg-12">
-    <div class="table-responsive border ">
-    <table class="table row table-borderless w-100 m-0 ">
-    <tbody class="col-lg-6 p-0">
-    <tr>
-    <td><strong>Full Name :</strong> @Model.UserProfileVM.Name @Model.UserProfileVM.Surname</td>
-    </tr>
-    </tbody>
-    <tbody class="col-lg-6 p-0">
-
-    <tr>
-    <td><strong>Email :</strong> @Model.UserProfileVM.Email</td>
-    </tr>
-    <tr>
-    <td><strong>Phone :</strong> Tel no gelecek.</td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    </div>
-    </div>
-
-    </div>
-    </div>
-
-    <div class="card clearfix">
-    <div class="card-header">
-    <h2 class="card-title">Location</h2>
-    </div>
-    <div class="card-body">
-
-
-    <div class="pac-card" id="pac-card">
-    <div id="pac-container">
-    <input id="pac-input" type="text" placeholder="Konum Ara" />
-    <input id="btn-ekle" type="button" value="Ekle" />
-    </div>
-    </div>
-    <div id="map"></div>
-    <div id="infowindow-content">
-    <span id="place-name" class="title"></span><br />
-    <span id="place-address"></span>
-    </div>
-
-
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>*@
 
 <div class="container">
     <div class="row gutters">
@@ -185,38 +36,41 @@
             </div>
         </div>
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
+            <div class="card">
                 <div class="card-body">
                     <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <h6 class="mb-2 text-primary">Personal Details</h6>
                         </div>
+
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="fullName">Name</label>
-                                <input type="text" class="form-control" id="Name" placeholder="@Model.UserProfileVM.Name">
+                                <label type="text" class="form-control" id="Name">@Model.UserProfileVM.Name</label>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="fullName">Surname</label>
-                                <input type="text" class="form-control" id="Surname" placeholder="@Model.UserProfileVM.Surname">
+                                <label type="text" class="form-control" id="Surname">@Model.UserProfileVM.Surname</label>
                             </div>
                         </div>
 
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" placeholder="@Model.UserProfileVM.PhoneNumber">
+                                <label type="text" class="form-control" id="phone">@Model.UserProfileVM.PhoneNumber</label>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="eMail">Email</label>
-                                <input type="email" class="form-control" id="eMail" placeholder="@Model.UserProfileVM.Email">
+                                <label type="email" class="form-control" id="eMail">@Model.UserProfileVM.Email</label>
                             </div>
                         </div>
                     </div>
+
+
                     <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <h6 class="mt-3 mb-2 text-primary">Address</h6>
@@ -225,22 +79,25 @@
                             <div class="form-group">
                                 <label for="Street"></label>
 
-                                <textarea class="form-control" id="Street" placeholder="@Model.UserProfileVM.Adress" id="w3review" name="w3review" rows="2" cols="100"></textarea>
+                                <label class="form-control" id="Adress" id="w3review" rows="2" cols="100">@Model.UserProfileVM.Adress</label>
                             </div>
+
+
                         </div>
 
                     </div>
                     <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="text-right">
-                                <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                                <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+                                <a asp-controller="User" asp-action="EditProfile" class="btn btn-primary full-screen-link nav-link-bg">Edit Profile</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>
 
