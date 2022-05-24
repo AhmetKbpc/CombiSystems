@@ -20,6 +20,7 @@ public sealed class MyContext : IdentityDbContext<ApplicationUser, ApplicationRo
         {
             entity.Property(x => x.Name).HasMaxLength(50).IsRequired(false);
             entity.Property(x => x.Surname).HasMaxLength(50).IsRequired(false);
+            entity.Property(x => x.PhoneNumber).HasMaxLength(10).IsRequired(false);
             entity.Property(x => x.RegisterDate).HasColumnType("datetime");
         });
 

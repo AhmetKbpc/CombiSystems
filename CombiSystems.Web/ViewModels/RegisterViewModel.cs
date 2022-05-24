@@ -31,4 +31,11 @@ public class RegisterViewModel
     [DataType(DataType.Password)]
     [Compare("Password", ErrorMessage = "Şifreler uyuşmuyor!")]
     public string ConfirmPassword { get; set; }
+
+
+    [Display(Name = "Telefon Numarası")]
+    [Required(ErrorMessage = "Telefon numarası alanı gereklidir.")]
+    [StringLength(10, MinimumLength = 10, ErrorMessage = "Başında 0 olmadan giriniz.")]
+    [DataType(DataType.EmailAddress)]
+    public string PhoneNumber { get; set; }
 }

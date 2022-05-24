@@ -77,7 +77,8 @@ public class HomeController : Controller
             UserName = model.Email,
             Email = model.Email,
             Name = model.Name,
-            Surname = model.Surname
+            Surname = model.Surname,
+            PhoneNumber = model.PhoneNumber
 
         };
 
