@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CombiSystems.Data.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20220531111715_Init")]
+    [Migration("20220531123557_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,130 @@ namespace CombiSystems.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("CombiSystems.Core.Entities.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("AppointentClosingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("AppointentOpeningDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("TaskStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("TechnicianAssignDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TechnicianId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("Appointments");
+                });
+
+            modelBuilder.Entity("CombiSystems.Core.Entities.Bill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AppointmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PaymentStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppointmentId")
+                        .IsUnique();
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("Bills");
+                });
+
+            modelBuilder.Entity("CombiSystems.Core.Entities.BillDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BillId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Count")
+                        .HasColumnType("float");
+
+                    b.Property<string>("CreatedUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("SalesAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BillId");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("BillDetails");
+                });
 
             modelBuilder.Entity("CombiSystems.Core.Entities.Category", b =>
                 {
@@ -63,7 +187,7 @@ namespace CombiSystems.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValue(new Guid("9f872172-2feb-4cb6-8587-7f4a645824b3"));
+                        .HasDefaultValue(new Guid("5760d952-4fc4-47ae-bbc5-d1c94e9da3f6"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -313,6 +437,28 @@ namespace CombiSystems.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CombiSystems.Core.Entities.Bill", b =>
+                {
+                    b.HasOne("CombiSystems.Core.Entities.Appointment", "Appointment")
+                        .WithOne("Bill")
+                        .HasForeignKey("CombiSystems.Core.Entities.Bill", "AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Appointment");
+                });
+
+            modelBuilder.Entity("CombiSystems.Core.Entities.BillDetails", b =>
+                {
+                    b.HasOne("CombiSystems.Core.Entities.Bill", "Bill")
+                        .WithMany("BillDetails")
+                        .HasForeignKey("BillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bill");
+                });
+
             modelBuilder.Entity("CombiSystems.Core.Entities.Product", b =>
                 {
                     b.HasOne("CombiSystems.Core.Entities.Category", "Category")
@@ -373,6 +519,16 @@ namespace CombiSystems.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CombiSystems.Core.Entities.Appointment", b =>
+                {
+                    b.Navigation("Bill");
+                });
+
+            modelBuilder.Entity("CombiSystems.Core.Entities.Bill", b =>
+                {
+                    b.Navigation("BillDetails");
                 });
 
             modelBuilder.Entity("CombiSystems.Core.Entities.Category", b =>

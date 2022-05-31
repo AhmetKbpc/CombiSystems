@@ -59,9 +59,9 @@ public sealed class MyContext : IdentityDbContext<ApplicationUser, ApplicationRo
                 .WithOne(x => x.Appointment)
                 .HasForeignKey<Bill>(x => x.AppointmentId);
             entity.Property(x => x.UserId).IsRequired();
-            entity.Property(x => x.AppointentOpeningDate).IsRequired(false);
-            entity.Property(x => x.TechnicianAssignDate).IsRequired(false);
-            entity.Property(x => x.AppointentClosingDate).IsRequired(false);
+            entity.Property(x => x.AppointentOpeningDate).IsRequired();
+            entity.Property(x => x.TechnicianAssignDate).IsRequired();
+            entity.Property(x => x.AppointentClosingDate).IsRequired();
             entity.Property(x => x.Description).IsRequired(false).HasMaxLength(250);
             entity.Property(x => x.TaskStatus).IsRequired();
 
