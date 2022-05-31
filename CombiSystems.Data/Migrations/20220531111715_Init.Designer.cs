@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CombiSystems.Data.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20220524084841_Init")]
+    [Migration("20220531111715_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,6 @@ namespace CombiSystems.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedUser")
                         .IsRequired()
@@ -66,13 +63,10 @@ namespace CombiSystems.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasDefaultValue(new Guid("2c6f0999-14b1-4295-851a-a98cc1a07773"));
+                        .HasDefaultValue(new Guid("9f872172-2feb-4cb6-8587-7f4a645824b3"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedUser")
                         .IsRequired()
