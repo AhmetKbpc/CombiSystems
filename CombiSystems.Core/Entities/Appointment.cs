@@ -15,13 +15,11 @@ public class Appointment : BaseEntity<int>
     public DateTime TechnicianAssignDate { get; set; }
     public DateTime AppointentClosingDate { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
-    public bool TaskStatus { get; set; }
+    public bool TaskStatus { get; set; }=false;
 
     public string? TechnicianId { get; set; }
-
-    public int BillId { get; set; }
 
     public Bill? Bill { get; set; }
 

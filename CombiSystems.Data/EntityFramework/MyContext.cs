@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;  
+using Microsoft.EntityFrameworkCore;
 using CombiSystems.Data.Identity;
 using CombiSystems.Core.Entities;
 
@@ -39,20 +39,75 @@ public sealed class MyContext : IdentityDbContext<ApplicationUser, ApplicationRo
             entity.Property(x => x.Name).IsRequired().HasMaxLength(50);
             entity.Property(x => x.Description).IsRequired(false).HasMaxLength(250);
         });
-        
+
 
         builder.Entity<Product>(entity =>
         {
             entity.HasIndex(x => x.Id);
             entity.Property(x => x.Id).HasDefaultValue(Guid.NewGuid());
             entity.HasOne(x => x.Category)
-                .WithMany(x=>x.Products)
+                .WithMany(x => x.Products)
                 .HasForeignKey(x => x.CategoryId);
             entity.Property(x => x.Name).IsRequired().HasMaxLength(50);
             entity.Property(x => x.UnitPrice).HasPrecision(8, 2);
         });
+
+        builder.Entity<Appointment>(entity =>
+        {
+            entity.HasIndex(x => x.Id);
+            entity.HasOne(x => x.Bill)
+                .WithOne(x => x.Appointment)
+                .HasForeignKey<Bill>(x => x.AppointmentId);
+            entity.Property(x => x.UserId).IsRequired();
+            entity.Property(x => x.AppointentOpeningDate).IsRequired(false);
+            entity.Property(x => x.TechnicianAssignDate).IsRequired(false);
+            entity.Property(x => x.AppointentClosingDate).IsRequired(false);
+            entity.Property(x => x.Description).IsRequired(false).HasMaxLength(250);
+            entity.Property(x => x.TaskStatus).IsRequired();
+
+        });
+
+        builder.Entity<Bill>(entity =>
+        {
+            entity.HasIndex(x => x.Id);
+            entity.HasOne(x => x.Appointment)
+                .WithOne(x => x.Bill)
+                .HasForeignKey<Bill>(x => x.AppointmentId);
+            entity.Property(x => x.TotalPrice).IsRequired();
+            entity.Property(x => x.PaymentStatus).IsRequired();
+        });
+
+        builder.Entity<BillDetails>(entity =>
+        {
+            entity.HasIndex(x => x.Id);
+            entity.HasOne(x => x.Bill)
+                .WithMany(x => x.BillDetails)
+                .HasForeignKey(x => x.BillId);
+            entity.Property(x => x.ProductId).IsRequired();
+            entity.Property(x => x.SalesAmount).IsRequired();
+            entity.Property(x => x.Count).IsRequired();
+        });
     }
 
-    public DbSet<Category> Categories { get; set; }
-    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories
+    {
+        get; set;
+    }
+    public DbSet<Product> Products
+    {
+        get; set;
+    }
+
+    public DbSet<Appointment> Appointments
+    {
+        get; set;
+    }
+    public DbSet<Bill> Bills
+    {
+        get; set;
+    }
+    public DbSet<BillDetails> BillDetails
+    {
+        get; set;
+    }
 }
