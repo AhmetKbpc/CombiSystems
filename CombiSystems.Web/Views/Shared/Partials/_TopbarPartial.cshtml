@@ -1,30 +1,57 @@
-﻿                <div class="topbar">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <div class="full">
-                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"> <i class="fa fa-bars"> </i> </button>
-                            <div class="logo_section">
-                                <a href="index.html"> <img class="img-responsive" src="../../root/images/logo/logo.png" alt="#"> </a>
-                            </div>
-                            <div class="right_topbar">
-                                <div class="icon_info">
-                                    <ul>
-                                        <li> <a href="#"> <i class="fa fa-bell-o"> </i> <span class="badge"> 2</span> </a> </li>
-                                        <li> <a href="#"> <i class="fa fa-question-circle"> </i> </a> </li>
-                                        <li> <a href="#"> <i class="fa fa-envelope-o"> </i> <span class="badge"> 3</span> </a> </li>
-                                    </ul>
-                                    <ul class="user_profile_dd">
-                                        <li>
-                                            <a class="dropdown-toggle" data-toggle="dropdown"> <img class="img-responsive rounded-circle" src="../../root/images/layout_img/user_img.jpg" alt="#"> <span class="name_user"> John David</span> </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="profile.html"> My Profile</a>
-                                                <a class="dropdown-item" href="settings.html"> Settings</a>
-                                                <a class="dropdown-item" href="help.html"> Help</a>
-                                                <a class="dropdown-item" href="#"> <span> Log Out</span> <i class="fa fa-sign-out"> </i> </a>
-                                            </div>
-                                        </li>
-                                    </ul>
+﻿<div class="topbar">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="full">
+            <button type="button" id="sidebarCollapse" class="sidebar_toggle"> <i class="fa fa-bars"> </i> </button>
+            <div class="logo_section">
+                <a href="index.html"> <img class="img-responsive" src="../../root/images/logo/logo.png" alt="#"> </a>
+            </div>
+
+            <div class="right_topbar">
+                @if (@Context.User.Identity!.IsAuthenticated)
+                {
+                    <div class="icon_info">
+                        <ul>
+                            <li> <a href="#"> <i class="fa fa-bell-o"> </i> <span class="badge"> 2</span> </a> </li>
+                            <li> <a href="#"> <i class="fa fa-question-circle"> </i> </a> </li>
+                            <li> <a href="#"> <i class="fa fa-envelope-o"> </i> <span class="badge"> 3</span> </a> </li>
+                        </ul>
+                        <ul class="user_profile_dd">
+                            <li>
+                                <a class="dropdown-toggle" data-toggle="dropdown"> <img class="img-responsive rounded-circle" src="../../root/images/layout_img/user_img.jpg" alt="#"> <span class="name_user"> John David</span> </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="profile.html"> My Profile</a>
+                                    <a class="dropdown-item" href="settings.html"> Settings</a>
+                                    <a class="dropdown-item" href="help.html"> Help</a>
+                                    <a class="dropdown-item" href="#"> <span> Log Out</span> <i class="fa fa-sign-out"> </i> </a>
                                 </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="icon_info mx-5 my-3">
+                        <a class="btn btn-primary logreg" style="width:80px" asp-controller="Home" asp-action="Login">Login</a>
+                        <a class="btn btn-success logreg" style="width:80px" asp-controller="Home" asp-action="Register">Register</a>
+                    </div>
+
+                }
+            </div>
+
+
+        </div>
+    </nav>
+</div>
+
+<style>
+
+    .logreg {
+        border-radius: 4px;
+        border: none;
+        text-align: center;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+</style>
