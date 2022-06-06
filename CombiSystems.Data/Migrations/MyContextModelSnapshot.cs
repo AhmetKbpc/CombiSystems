@@ -143,6 +143,9 @@ namespace CombiSystems.Data.Migrations
 
                     b.HasIndex("Id");
 
+                    b.HasIndex("ProductId")
+                        .IsUnique();
+
                     b.ToTable("BillDetails");
                 });
 
@@ -182,10 +185,11 @@ namespace CombiSystems.Data.Migrations
 
             modelBuilder.Entity("CombiSystems.Core.Entities.Product", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValue(new Guid("5760d952-4fc4-47ae-bbc5-d1c94e9da3f6"));
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -454,7 +458,15 @@ namespace CombiSystems.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CombiSystems.Core.Entities.Product", "Product")
+                        .WithOne("BillDetails")
+                        .HasForeignKey("CombiSystems.Core.Entities.BillDetails", "ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Bill");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("CombiSystems.Core.Entities.Product", b =>
@@ -532,6 +544,11 @@ namespace CombiSystems.Data.Migrations
             modelBuilder.Entity("CombiSystems.Core.Entities.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("CombiSystems.Core.Entities.Product", b =>
+                {
+                    b.Navigation("BillDetails");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,7 +4,7 @@ using CombiSystems.Data.EntityFramework;
 
 namespace CombiSystems.Business.Repositories;
 
-public class ProductRepo : RepositoryBase<Product, Guid>
+public class ProductRepo : RepositoryBase<Product, int>
 {
     public ProductRepo(MyContext context) : base(context)
     {

@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using AutoMapper;
+using CombiSystems.Core.Payments;
 using Iyzipay;
 using Iyzipay.Model;
 using Iyzipay.Request;

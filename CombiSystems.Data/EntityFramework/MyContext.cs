@@ -44,7 +44,6 @@ public sealed class MyContext : IdentityDbContext<ApplicationUser, ApplicationRo
         builder.Entity<Product>(entity =>
         {
             entity.HasIndex(x => x.Id);
-            entity.Property(x => x.Id).HasDefaultValue(Guid.NewGuid());
             entity.HasOne(x => x.Category)
                 .WithMany(x => x.Products)
                 .HasForeignKey(x => x.CategoryId);
@@ -83,6 +82,9 @@ public sealed class MyContext : IdentityDbContext<ApplicationUser, ApplicationRo
             entity.HasOne(x => x.Bill)
                 .WithMany(x => x.BillDetails)
                 .HasForeignKey(x => x.BillId);
+            entity.HasOne(x => x.Product)
+                .WithOne(x => x.BillDetails)
+                .HasForeignKey<BillDetails>(x => x.ProductId);
             entity.Property(x => x.ProductId).IsRequired();
             entity.Property(x => x.SalesAmount).IsRequired();
             entity.Property(x => x.Count).IsRequired();

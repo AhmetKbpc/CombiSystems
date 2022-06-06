@@ -226,7 +226,8 @@ namespace CombiSystems.Data.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValue: new Guid("5760d952-4fc4-47ae-bbc5-d1c94e9da3f6")),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(8,2)", precision: 8, scale: 2, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
@@ -266,6 +267,12 @@ namespace CombiSystems.Data.Migrations
                         name: "FK_BillDetails_Bills_BillId",
                         column: x => x.BillId,
                         principalTable: "Bills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BillDetails_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -325,6 +332,12 @@ namespace CombiSystems.Data.Migrations
                 column: "Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BillDetails_ProductId",
+                table: "BillDetails",
+                column: "ProductId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bills_AppointmentId",
                 table: "Bills",
                 column: "AppointmentId",
@@ -372,9 +385,6 @@ namespace CombiSystems.Data.Migrations
                 name: "BillDetails");
 
             migrationBuilder.DropTable(
-                name: "Products");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -384,10 +394,13 @@ namespace CombiSystems.Data.Migrations
                 name: "Bills");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Appointments");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

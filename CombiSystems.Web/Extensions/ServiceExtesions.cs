@@ -52,7 +52,7 @@ namespace CombiSystems.Web.Extensions
 
             services.AddTransient<IEmailService, SmtpEmailService>();
 
-            services.AddScoped<IRepository<Product, Guid>, ProductRepo>();
+            services.AddScoped<IRepository<Product, int>, ProductRepo>();
             services.AddScoped<IRepository<Category, int>, CategoryRepo>();
 
             //builder.Services.AddAutoMapper(options => options.AddMaps("AdminTemplate.MappingProfiles"));
