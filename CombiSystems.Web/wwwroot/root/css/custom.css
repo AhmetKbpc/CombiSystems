@@ -1,0 +1,13 @@
+/*------------------------------------------------------------------
+    File Name: custom.css
+-------------------------------------------------------------------*/
+
+/** ADD YOUR AWESOME CODES HERE **/
+
+.header {
+    padding-top: 7rem;
+    padding-bottom: 5.5rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../images/background.jpg') center center no-repeat;
+    background-size: cover;
+    text-align: center;
+}

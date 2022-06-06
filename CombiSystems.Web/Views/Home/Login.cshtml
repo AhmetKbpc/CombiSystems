@@ -8,62 +8,47 @@
     <partial name="Partials/_HeadPartial" />
 </head>
 
-<body>
 
-    <section class="vh-100" style="background-color: #f0f1f1;">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col col-xl-10">
-                    <div class="card" style="border-radius: 1rem;">
-                        <div class="row g-0">
-                            <div class="col-md-2 col-lg-2 d-none d-md-block">
-
-                            </div>
-                            <div class="col-md-6 col-lg-8 d-flex align-items-center">
-                                <div class="card-body p-4 p-lg-5 text-black">
-
-                                    <form asp-controller="Home" asp-action="Login" method="post">
-
-                                        <div class="d-flex align-items-center mb-3 pb-1">
-                                            <img src="../../User/images/logo.png" width="75px" alt="alternative">
-                                        </div>
-
-                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign in</h5>
-
-                                        <div class="form-outline mb-4">
-                                            <input asp-for="Email" type="email" id="form2Example17" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form2Example17">Email address</label>
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <input asp-for="Password" type="password" id="form2Example27" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form2Example27">Password</label>
-                                        </div>
-
-                                        <div class="pt-1 mb-4">
-                                            <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
-                                        </div>
-
-                                        <a asp-controller="Home" asp-action="ResetPassword" class="small text-muted">Forgot password?</a>
-
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">
-                                            Don't have an account?
-                                            <a asp-controller="Home" asp-action="Register" style="color: #393f81;">Register here</a>
-                                        </p>
-
-                                        <a href="#!" class="small text-muted">Terms of use.</a>
-                                        <a href="#!" class="small text-muted">Privacy policy</a>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<body class="inner_page login">
+      <div class="full_container">
+         <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="login_section">
+                  <div class="logo_login">
+                     <div class="center">
+                        <img width="210" src="../../root/images/logo/fornax.svg" alt="#">
+                     </div>
+                  </div>
+                  <div class="login_form">
+                      <form asp-controller="Home" asp-action="Login" method="post">
+                        <fieldset>
+                           <div class="field">
+                              <label class="label_field">Email Address</label>
+                              <input asp-for="Email" type="email" name="email" placeholder="E-mail">
+                           </div>
+                           <div class="field">
+                              <label class="label_field">Password</label>
+                              <input asp-for="Password" type="password" name="password" placeholder="Password">
+                           </div>
+                           <div class="field">
+                              <label class="label_field hidden">hidden label</label>
+                              <a asp-controller="Home" asp-action="ResetPassword" class="forgot">Forgotten Password?</a>
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button type="submit" class="main_bt">Sing In</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
             </div>
-        </div>
-    </section>
+         </div>
+      </div>
 
+    <!-- Scripts -->
+    <partial name="Partials/_ScriptsPartial" />
+    <!-- EndScripts -->
 
 </body>
 
