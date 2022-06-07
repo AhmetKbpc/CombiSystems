@@ -5,7 +5,7 @@
                 <a href="index.html"> <img class="logo_icon img-responsive" src="../../root/images/logo/logo_icon.png" alt="#"> </a>
             </div>
         </div>
-        @if (@Context.User.Identity.IsAuthenticated)
+        @if (@Context.User.Identity!.IsAuthenticated)
         {
             <div class="sidebar_user_info">
                 <div class="icon_setting"> </div>

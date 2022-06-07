@@ -32,6 +32,11 @@ public class UserController : Controller
     [HttpGet]
     public async Task<IActionResult> Profile()
     {
+        if (HttpContext.User.Identity!.IsAuthenticated)
+        {
+            return RedirectToAction("Login", "Home");
+        }
+        
         var name = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(name);
         var model = new UpdateProfilePasswordViewModel
@@ -86,7 +91,7 @@ public class UserController : Controller
             return View(model);
         }
 
-        var name = HttpContext.User.Identity.Name;
+        var name = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(name);
 
         if (user == null)
@@ -96,7 +101,7 @@ public class UserController : Controller
         }
 
         var isAdmin = await _userManager.IsInRoleAsync(user, Roles.Admin);
-        if (user.Email != model.UserProfileVM.Email && !isAdmin)
+        if (user.Email != model.UserProfileVM!.Email && !isAdmin)
         {
             await _userManager.RemoveFromRoleAsync(user, Roles.User);
             await _userManager.AddToRoleAsync(user, Roles.Passive);
@@ -104,7 +109,7 @@ public class UserController : Controller
 
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Scheme);
+            var callbackUrl = Url.Action("ConfirmEmail", "Home", new { userId = user.Id, code = code }, protocol: Request.Scheme);
 
             var emailMessage = new MailModel()
             {
@@ -155,9 +160,9 @@ public class UserController : Controller
             return RedirectToAction(nameof(Profile));
         }
 
-        var name = HttpContext.User.Identity.Name;
+        var name = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(name);
-        var result = await _userManager.ChangePasswordAsync(user, model.ChangePasswordVM.CurrentPassword, model.ChangePasswordVM.NewPassword);
+        var result = await _userManager.ChangePasswordAsync(user, model.ChangePasswordVM!.CurrentPassword, model.ChangePasswordVM.NewPassword);
 
         if (result.Succeeded)
         {
@@ -172,6 +177,7 @@ public class UserController : Controller
 
         return RedirectToAction(nameof(EditProfile));
     }
+
 
 
 

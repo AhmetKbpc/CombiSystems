@@ -42,9 +42,8 @@ namespace CombiSystems.Web.Extensions
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-
-                options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.LoginPath = "/Home/Login";
+                options.AccessDeniedPath = "/Home/AccessDenied";
                 options.SlidingExpiration = true;
             });
 
@@ -54,8 +53,6 @@ namespace CombiSystems.Web.Extensions
 
             services.AddScoped<IRepository<Product, int>, ProductRepo>();
             services.AddScoped<IRepository<Category, int>, CategoryRepo>();
-
-            //builder.Services.AddAutoMapper(options => options.AddMaps("AdminTemplate.MappingProfiles"));
             services.AddAutoMapper(options =>
             {
                 options.AddProfile<EntityMappingProfile>();

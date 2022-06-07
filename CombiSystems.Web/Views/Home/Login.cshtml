@@ -10,41 +10,44 @@
 
 
 <body class="inner_page login">
-      <div class="full_container">
-         <div class="container">
+    <div class="full_container">
+        <div class="container">
             <div class="center verticle_center full_height">
-               <div class="login_section">
-                  <div class="logo_login">
-                     <div class="center">
-                        <img width="210" src="../../root/images/logo/fornax.svg" alt="#">
-                     </div>
-                  </div>
-                  <div class="login_form">
-                      <form asp-controller="Home" asp-action="Login" method="post">
-                        <fieldset>
-                           <div class="field">
-                              <label class="label_field">Email Address</label>
-                              <input asp-for="Email" type="email" name="email" placeholder="E-mail">
-                           </div>
-                           <div class="field">
-                              <label class="label_field">Password</label>
-                              <input asp-for="Password" type="password" name="password" placeholder="Password">
-                           </div>
-                           <div class="field">
-                              <label class="label_field hidden">hidden label</label>
-                              <a asp-controller="Home" asp-action="ResetPassword" class="forgot">Forgotten Password?</a>
-                           </div>
-                           <div class="field margin_0">
-                              <label class="label_field hidden">hidden label</label>
-                              <button type="submit" class="main_bt">Sing In</button>
-                           </div>
-                        </fieldset>
-                     </form>
-                  </div>
-               </div>
+                <div class="login_section">
+                    <div class="logo_login">
+                        <div class="center">
+                            <img width="210" src="../../root/images/logo/fornax.svg" alt="#">
+                        </div>
+                    </div>
+                    <div class="login_form">
+                        <form asp-controller="Home" asp-action="Login" method="post">
+                            <fieldset>
+                                <span class="text text-danger" asp-validation-for="Email"></span>
+                                <div class="field">
+                                    <label class="label_field">Email Address</label>
+                                    <input asp-for="Email" type="email" name="email" placeholder="E-mail">
+
+                                </div>
+                                    <span class="text text-danger" asp-validation-for="Password"></span>
+                                <div class="field">
+                                    <label class="label_field">Password</label>
+                                    <input asp-for="Password" type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="field">
+                                    <label class="label_field hidden">hidden label</label>
+                                    <a asp-controller="Home" asp-action="ResetPassword" class="forgot">Forgotten Password?</a>
+                                </div>
+                                <div class="field margin_0">
+                                    <label class="label_field hidden">hidden label</label>
+                                    <button type="submit" class="main_bt">Sing In</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <partial name="Partials/_ScriptsPartial" />

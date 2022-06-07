@@ -79,7 +79,7 @@ public class HomeController : Controller
             Name = model.Name,
             Surname = model.Surname,
             PhoneNumber = model.PhoneNumber,
-            Adress=model.Adress
+            Adress = model.Adress
 
         };
 
@@ -94,7 +94,7 @@ public class HomeController : Controller
             //Email gönderme - Aktivasyon
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code },
+            var callbackUrl = Url.Action("ConfirmEmail", "Home", new { userId = user.Id, code = code },
                 protocol: Request.Scheme);
 
             var email = new MailModel()
@@ -112,6 +112,11 @@ public class HomeController : Controller
             await _emailService.SendMailAsync(email);
             //TODO: Login olma
             return RedirectToAction("Login");
+        }
+        else
+        {
+            TempData["Message"] = result.Errors.Select(x => x.Description).Last();
+
         }
 
         var messages = string.Join("<br>", result.Errors.Select(x => x.Description));
@@ -197,5 +202,102 @@ public class HomeController : Controller
     }
 
 
+    [HttpGet("~/ResetPassword")]
+    public IActionResult ResetPassword()
+    {
+        return View();
+    }
 
+
+
+    [HttpPost("~/ResetPassword")]
+    public async Task<IActionResult> ResetPassword(string email)
+    {
+        if (email == null)
+        {
+            TempData["Message"] = "Email is Required!";
+        }
+        else
+        {
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                TempData["OKMessage"] = "Password update mail is sent to you.";
+            }
+            else
+            {
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                var callbackUrl = Url.Action("ConfirmResetPassword", "Home", new { userId = user.Id, code = code },
+                    Request.Scheme);
+
+                var emailMessage = new MailModel()
+                {
+                    To = new List<EmailModel>
+                {
+                    new EmailModel()
+                        { Adress = user.Email, Name = user.UserName }
+                },
+                    Body =
+                        $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.",
+                    Subject = "Reset Password"
+                };
+
+                // await _emailService.SendMailAsync(emailMessage);
+
+                TempData["OKMessage"] = "Password update mail is sent to you.";
+
+            }
+        }
+        return View();
+    }
+
+
+    [HttpGet("~/ConfirmResetPassword")]
+    public IActionResult ConfirmResetPassword(string userId, string code)
+    {
+        if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(code))
+        {
+            return BadRequest("Bad Request");
+        }
+
+        ViewBag.Code = code;
+        ViewBag.UserId = userId;
+        return View();
+    }
+
+    [HttpPost("~/ConfirmResetPassword")]
+    public async Task<IActionResult> ConfirmResetPassword(ResetPasswordViewModel model)
+    {
+        if (model.Code == null || model.UserId == null)
+        {
+            TempData["Message"] = "Invalid Token!";
+            return View(model);
+
+        }
+        var user = await _userManager.FindByIdAsync(model.UserId);
+        if (user == null)
+        {
+            ModelState.AddModelError(string.Empty, "User coud not be found!");
+            return View();
+        }
+        var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Code));
+        var result = await _userManager.ResetPasswordAsync(user, code, model.NewPassword);
+        if (result.Succeeded)
+        {
+            //email gönder
+            TempData["OKMessage"] = "Password change is successful.";
+            return RedirectToAction("Login", "Home");
+        }
+        else
+        {
+            var message = string.Join("<br>", result.Errors.Select(x => x.Description));
+            TempData["Message"] = message;
+            return View();
+        }
+    }
 }
+
+
+
