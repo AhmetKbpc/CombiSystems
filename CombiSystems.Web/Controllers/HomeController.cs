@@ -154,9 +154,15 @@ public class HomeController : Controller
 
 
 
-    [HttpGet("~/Login")]
-    public IActionResult Login()
+    [HttpGet]
+    public IActionResult Login(string? returnUrl = null)
     {
+
+        
+        var model = new LoginViewModel()
+        {
+            ReturnUrl = returnUrl
+        };
         if (HttpContext.User.Identity!.IsAuthenticated)
         {
             return RedirectToAction("Index", "Home");
@@ -165,7 +171,7 @@ public class HomeController : Controller
     }
 
 
-    [HttpPost("~/Login")]
+    [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (!ModelState.IsValid)
@@ -173,23 +179,34 @@ public class HomeController : Controller
             return View(model);
         }
 
-        var user = await _userManager.FindByNameAsync(model.Email);
-
-        var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, true);
+        var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
 
         if (result.Succeeded)
         {
-            return RedirectToAction("Index", "Home");
+            var user = _userManager.FindByNameAsync(model.Email).Result;
+            HttpContext.Session.SetString("User", System.Text.Json.JsonSerializer.Serialize(new
+            {
+                user.Name,
+                user.Surname,
+                user.Email
+            }));
+
+            //model.ReturnUrl = string.IsNullOrEmpty(model.ReturnUrl) ? "~/" : model.ReturnUrl;
+
+            //model.ReturnUrl = model.ReturnUrl ?? Url.Action("Index", "Home");
+
+            model.ReturnUrl ??= Url.Content("~/");
+
+            return LocalRedirect(model.ReturnUrl);
         }
         else if (result.IsLockedOut)
         {
-            //TODO: Kilitlenmişse ne yapılacağı
         }
         else if (result.RequiresTwoFactor)
         {
-            //TODO: 2fa yönlendirmesi yapılacak
         }
-        ModelState.AddModelError(string.Empty, "Incorrect password or username!");
+
+        ModelState.AddModelError(string.Empty, "Username or password is incorrect");
         return View(model);
     }
 

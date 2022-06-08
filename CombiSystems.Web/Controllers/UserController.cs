@@ -32,7 +32,7 @@ public class UserController : Controller
     [HttpGet]
     public async Task<IActionResult> Profile()
     {
-        if (HttpContext.User.Identity!.IsAuthenticated)
+        if (!HttpContext.User.Identity!.IsAuthenticated)
         {
             return RedirectToAction("Login", "Home");
         }
