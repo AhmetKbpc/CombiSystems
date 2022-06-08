@@ -42,7 +42,7 @@ namespace CombiSystems.Web.Extensions
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-                options.LoginPath = "/Home/Login";
+                options.LoginPath = "/Login";
                 options.AccessDeniedPath = "/Home/AccessDenied";
                 options.SlidingExpiration = true;
             });

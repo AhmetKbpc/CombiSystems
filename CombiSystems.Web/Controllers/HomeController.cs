@@ -154,15 +154,10 @@ public class HomeController : Controller
 
 
 
-    [HttpGet]
-    public IActionResult Login(string? returnUrl = null)
+    [HttpGet("~/Login")]
+    public IActionResult Login()
     {
 
-        
-        var model = new LoginViewModel()
-        {
-            ReturnUrl = returnUrl
-        };
         if (HttpContext.User.Identity!.IsAuthenticated)
         {
             return RedirectToAction("Index", "Home");
@@ -171,7 +166,7 @@ public class HomeController : Controller
     }
 
 
-    [HttpPost]
+    [HttpPost("~/Login")]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (!ModelState.IsValid)
@@ -184,12 +179,7 @@ public class HomeController : Controller
         if (result.Succeeded)
         {
             var user = _userManager.FindByNameAsync(model.Email).Result;
-            HttpContext.Session.SetString("User", System.Text.Json.JsonSerializer.Serialize(new
-            {
-                user.Name,
-                user.Surname,
-                user.Email
-            }));
+            
 
             //model.ReturnUrl = string.IsNullOrEmpty(model.ReturnUrl) ? "~/" : model.ReturnUrl;
 
