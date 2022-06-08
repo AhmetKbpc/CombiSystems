@@ -53,14 +53,43 @@
                             <a href="index.html"> <img class="img-responsive" src="../../root/images/logo/fornax.svg" alt="#"> </a>
                         </div>
                         <div class="right_topbar">
-                         @if (!@Context.User.Identity!.IsAuthenticated)
+                            @if (!@Context.User.Identity!.IsAuthenticated)
                             {
-                                <div class="icon_info mx-5 my-3">
-                                    <a class="btn btn-primary logreg" style="width:80px" href="/Login">Login</a>
-                                    <a class="btn btn-success logreg" style="width:80px" href="/Register">Register</a>
+                                <div class="icon_info">
+
+                                    <ul class="user_profile_aa mx-3">
+                                        <li>
+
+                                            <a class="btn btn-primary logreg" style="width:90px" href="/Login">Login</a>
+                                            <a class="btn btn-success logreg" style="width:90px" href="/Register">Register</a>
+
+                                             
+                                        </li>
+                                    </ul>
+
                                 </div>
                             }
-                            </div>
+                            else
+                            {
+
+                                <div class="icon_info ">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                                <img class="img-responsive rounded-circle" src="https://www.bootdey.com/app/webroot/img/Content/icons/64/PNG/64/packman.png" alt="#" />
+                                                <span class="name_user">John David</span>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" asp-controller="User" asp-action="Profile">My Profile</a>
+                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" asp-controller="Home" asp-action="Logout"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </nav>
             </div>

@@ -27,6 +27,15 @@ public class UserController : Controller
         _signInManager = signInManager;
     }
 
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult RoleChange()
+    {
+        return View();
+    }
 
     [Authorize]
     [HttpGet]

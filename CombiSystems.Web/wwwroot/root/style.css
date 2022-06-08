@@ -725,6 +725,14 @@ a:focus {
     padding: 12px 0 12px 20px;
     height: auto;
 }
+    .icon_info ul.user_profile_aa > li {
+        width: auto;
+        border-radius: 0;
+        background: #b4bac1;
+        margin: 0;
+        padding: 12px 0 12px 20px;
+        height: auto;
+    }
 
 .sidebar_toggle {
     border: none;
