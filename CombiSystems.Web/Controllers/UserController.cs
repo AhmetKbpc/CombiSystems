@@ -46,7 +46,8 @@ public class UserController : Controller
     [HttpGet]
     public IActionResult Appointment()
     {
-        return View();
+        var model = _appointmentRepo.Get().ToList();
+        return View(model);
     }
 
     [Authorize]
@@ -73,7 +74,7 @@ public class UserController : Controller
         _appointmentRepo.Save();
         TempData["Success"] = "Appointment creating is Success!";
 
-        return View();
+        return RedirectToAction();
     }
 
     [Authorize]

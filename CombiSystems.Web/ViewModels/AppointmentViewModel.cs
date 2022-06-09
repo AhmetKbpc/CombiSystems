@@ -13,5 +13,7 @@ namespace CombiSystems.Web.ViewModels
         [Required(ErrorMessage = "Adress alanı gereklidir")]
         [Display(Name = "Adress")]
         public string Address { get; set; }
+
+        public List<Core.Entities.Appointment> Appointments{ get; set; }
     }
 }
