@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CombiSystems.Data.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20220609114721_Init")]
+    [Migration("20220609132456_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
