@@ -36,9 +36,9 @@ namespace CombiSystems.Data.Migrations
                     b.Property<DateTime>("AppointentOpeningDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("AppointmentAddress")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(250)
@@ -51,12 +51,6 @@ namespace CombiSystems.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("TechnicianId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedUser")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -81,21 +75,11 @@ namespace CombiSystems.Data.Migrations
                     b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("PaymentStatus")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -121,21 +105,11 @@ namespace CombiSystems.Data.Migrations
                     b.Property<double>("Count")
                         .HasColumnType("float");
 
-                    b.Property<string>("CreatedUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("SalesAmount")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -157,10 +131,6 @@ namespace CombiSystems.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
@@ -169,12 +139,6 @@ namespace CombiSystems.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -194,10 +158,6 @@ namespace CombiSystems.Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -206,12 +166,6 @@ namespace CombiSystems.Data.Migrations
                     b.Property<decimal>("UnitPrice")
                         .HasPrecision(8, 2)
                         .HasColumnType("decimal(8,2)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

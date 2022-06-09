@@ -17,6 +17,8 @@ public class Appointment : BaseEntity<int>
 
     public string? Description { get; set; }
 
+    public string? AppointmentAddress { get; set; }
+
     public bool TaskStatus { get; set; }=false;
 
     public string? TechnicianId { get; set; }

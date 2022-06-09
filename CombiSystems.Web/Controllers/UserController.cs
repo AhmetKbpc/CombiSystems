@@ -1,5 +1,7 @@
-﻿using CombiSystems.Business.Services.Email;
+﻿using CombiSystems.Business.Repositories.Abstracts;
+using CombiSystems.Business.Services.Email;
 using CombiSystems.Core.Emails;
+using CombiSystems.Core.Entities;
 using CombiSystems.Core.Identity;
 using CombiSystems.Data.Identity;
 using CombiSystems.Web.ViewModels;
@@ -17,14 +19,17 @@ public class UserController : Controller
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailService _emailService;
     private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly IRepository<Appointment,int> _appointmentRepo;
 
     public UserController(UserManager<ApplicationUser> userManager,
         IEmailService emailService,
-        SignInManager<ApplicationUser> signInManager)
+        SignInManager<ApplicationUser> signInManager, 
+        IRepository<Appointment,int> appointmentRepo)
     {
         _userManager = userManager;
         _emailService = emailService;
         _signInManager = signInManager;
+        _appointmentRepo = appointmentRepo;
     }
 
     public IActionResult Index()
@@ -37,9 +42,37 @@ public class UserController : Controller
         return View();
     }
 
+    [Authorize]
+    [HttpGet]
     public IActionResult Appointment()
     {
         return View();
+    }
+
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> Appointment(AppointmentViewModel model)
+    {
+
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var name = HttpContext.User.Identity!.Name;
+        var user = await _userManager.FindByNameAsync(name);
+
+        var appointment = new Appointment
+        {
+            AppointmentAddress = model.Address,
+            UserId = user.Id,
+            Description = model.Description
+        };
+        _appointmentRepo.Insert(appointment);
+        _appointmentRepo.Save();
+
+
+        return RedirectToAction("Appointment");
     }
 
     [Authorize]
@@ -50,7 +83,7 @@ public class UserController : Controller
         {
             return RedirectToAction("Login", "Home");
         }
-        
+
         var name = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(name);
         var model = new UpdateProfilePasswordViewModel
@@ -60,8 +93,8 @@ public class UserController : Controller
                 Email = user.Email,
                 Name = user.Name!,
                 Surname = user.Surname!,
-                PhoneNumber=user.PhoneNumber,
-                Adress=user.Adress
+                PhoneNumber = user.PhoneNumber,
+                Adress = user.Adress
 
             }
         };
@@ -80,7 +113,7 @@ public class UserController : Controller
         {
             UserProfileVM = new UserProfileViewModel()
             {
-                UserName=user.UserName,
+                UserName = user.UserName,
                 Email = user.Email,
                 Name = user.Name!,
                 Surname = user.Surname!,

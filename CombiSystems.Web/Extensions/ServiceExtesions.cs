@@ -53,6 +53,8 @@ namespace CombiSystems.Web.Extensions
 
             services.AddScoped<IRepository<Product, int>, ProductRepo>();
             services.AddScoped<IRepository<Category, int>, CategoryRepo>();
+            services.AddScoped<IRepository<Appointment, int>, AppointmentRepo>();
+
             services.AddAutoMapper(options =>
             {
                 options.AddProfile<EntityMappingProfile>();

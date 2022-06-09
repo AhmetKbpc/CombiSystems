@@ -1,43 +1,79 @@
-﻿<div class="col-md-6">
-    <div class="white_shd full margin_bottom_30">
-        <div class="full graph_head">
-            <div class="heading1 margin_0">
-                <h2>Technical Service Request Form</h2>
-            </div>
-        </div>
-        <div class="table_section padding_infor_info">
-            <div class="table-responsive-sm">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Email</th>
-                            <th>Telephone</th>
-                            <th>Address</th>
-                            <th>Explanation</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                          
-                        </tr>
-                        <tr>
-                            <td>Mary</td>
-                            <td>Moe</td>
-                            <td>mary@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                        </tr>
+﻿@model AppointmentViewModel
 
-                    </tbody>
-                </table>
+<div class="row mx-4 my-5">
+
+    <div class="col-md-6 ">
+        <div class="white_shd full justify-content-center">
+            <div class="full graph_head">
+                <div class="heading1 margin_0">
+                    <h2>Technical Service Request Form</h2>
+                </div>
+            </div>
+
+            <div class="login_form">
+                <form asp-controller="User" asp-action="Appointment" method="post">
+
+                    <fieldset>
+
+                        <div class="field">
+                            <label class="label_field">Address</label>
+                            <input type="text" asp-for="Address" name="Address" placeholder="Address">
+                        </div>
+
+                        <div class="field">
+                            <label class="label_field">Explanation</label>
+                            <input type="text" asp-for="Description" name="Description" placeholder="Description">
+                        </div>
+
+                        <div class="field margin_0">
+                            <label class="label_field hidden">hidden label</label>
+                            <button type="submit" class="main_bt">Create</button>
+                        </div>
+                    </fieldset>
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="white_shd full margin_bottom_30">
+            <div class="full graph_head">
+                <div class="heading1 margin_0">
+                    <h2>Hover Table</h2>
+                </div>
+            </div>
+            <div class="table_section padding_infor_info">
+                <div class="table-responsive-sm">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John</td>
+                                <td>Doe</td>
+                                <td>john@example.com</td>
+                            </tr>
+                            <tr>
+                                <td>Mary</td>
+                                <td>Moe</td>
+                                <td>mary@example.com</td>
+                            </tr>
+                            <tr>
+                                <td>July</td>
+                                <td>Dooley</td>
+                                <td>july@example.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -20,11 +20,9 @@ namespace CombiSystems.Data.Migrations
                     TechnicianAssignDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AppointentClosingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    AppointmentAddress = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     TaskStatus = table.Column<bool>(type: "bit", nullable: false),
-                    TechnicianId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedUser = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedUser = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TechnicianId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,10 +80,7 @@ namespace CombiSystems.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    CreatedUser = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedUser = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -100,10 +95,7 @@ namespace CombiSystems.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PaymentStatus = table.Column<bool>(type: "bit", nullable: false),
-                    AppointmentId = table.Column<int>(type: "int", nullable: false),
-                    CreatedUser = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedUser = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AppointmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -230,10 +222,7 @@ namespace CombiSystems.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(8,2)", precision: 8, scale: 2, nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    CreatedUser = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedUser = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -255,10 +244,7 @@ namespace CombiSystems.Data.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     SalesAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Count = table.Column<double>(type: "float", nullable: false),
-                    BillId = table.Column<int>(type: "int", nullable: false),
-                    CreatedUser = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedUser = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    BillId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
