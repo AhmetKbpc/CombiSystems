@@ -14,27 +14,28 @@
                 <form asp-controller="User" asp-action="Appointment" method="post">
 
                     <fieldset>
-
+                         <span class="text text-danger" asp-validation-for="Address"></span>
                         <div class="field">
                             <label class="label_field">Address</label>
                             <input type="text" asp-for="Address" name="Address" placeholder="Address">
                         </div>
 
+                         <span class="text text-danger" asp-validation-for="Description"></span>
                         <div class="field">
                             <label class="label_field">Explanation</label>
                             <input type="text" asp-for="Description" name="Description" placeholder="Description">
                         </div>
 
+                                <span class="green_color mx-lg-5">@TempData["Success"]</span>
+
                         <div class="field margin_0">
                             <label class="label_field hidden">hidden label</label>
                             <button type="submit" class="main_bt">Create</button>
                         </div>
-                      
                     </fieldset>
 
                 </form>
             </div>
-
 
 
         </div>

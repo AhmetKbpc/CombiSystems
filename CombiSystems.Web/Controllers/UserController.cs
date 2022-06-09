@@ -56,6 +56,7 @@ public class UserController : Controller
 
         if (!ModelState.IsValid)
         {
+            TempData["Fail"] = "Appointment creating is Failed!";
             return View(model);
         }
 
@@ -68,11 +69,11 @@ public class UserController : Controller
             UserId = user.Id,
             Description = model.Description
         };
-        _appointmentRepo.Insert(appointment);
+        var result=_appointmentRepo.Insert(appointment);
         _appointmentRepo.Save();
+        TempData["Success"] = "Appointment creating is Success!";
 
-
-        return RedirectToAction("Appointment");
+        return View();
     }
 
     [Authorize]
