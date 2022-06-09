@@ -63,7 +63,7 @@
                                             <a class="btn btn-primary logreg" style="width:90px" href="/Login">Login</a>
                                             <a class="btn btn-success logreg" style="width:90px" href="/Register">Register</a>
 
-
+                                             
                                         </li>
                                     </ul>
 
@@ -77,11 +77,11 @@
                                         <li>
                                             <a class="dropdown-toggle" data-toggle="dropdown">
                                                 <img class="img-responsive rounded-circle" src="https://www.bootdey.com/app/webroot/img/Content/icons/64/PNG/64/packman.png" alt="#" />
-                                                <span class="name_user">John David</span>
+                                                <span class="name_user">Erhan Yükselen</span>
                                             </a>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" asp-controller="User" asp-action="Profile">My Profile</a>
-                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" asp-controller="User" asp-action="Appointment">Appointment</a>
                                                 <a class="dropdown-item" href="help.html">Help</a>
                                                 <a class="dropdown-item" asp-controller="Home" asp-action="Logout"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                                             </div>
@@ -132,25 +132,8 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+
                 </div>
-                     <div class="row column1">
-                        <div class="col-md-12">
-                           <div class="white_shd full margin_bottom_30">
-                              <div class="full graph_head">
-                                 <div class="heading1 margin_0">
-                                    <h2>Map <small>(Default)</small></h2>
-                                 </div>
-                              </div>
-                              <div class="map_section padding_infor_info">
-                                 <div class="map m_style1" >
-                                    <div id="map" ></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-
-
 
 
                 <div class="footer">
@@ -177,18 +160,12 @@
             padding: 60px 25px 25px 30px !important;
         }
 
-        #map {
-            height: 400px!important;
-            /* The height is 400 pixels */
-            width: 100%;
-            /* The width is the width of the web page */
-        }
     </style>
     <style>
 
 
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxLZK1wIF35XQVpQe6-ejbyGmKqvSCfz0&callback=initMap&v=weekly" defer></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
           $('.carousel').carousel({
@@ -197,23 +174,4 @@
         });
     </script>
 
-    <script>
-            // Initialize and add the map
-        function initMap() {
-          // The location of Uluru
-          const uluru = { lat: 41.044046, lng: 29.006935 };
-          // The map, centered at Uluru
-          const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 15,
-            center: uluru,
-          });
-          // The marker, positioned at Uluru
-          const marker = new google.maps.Marker({
-            position: uluru,
-            map: map,
-          });
-        }
-
-        window.initMap = initMap;
-    </script>
 </body>

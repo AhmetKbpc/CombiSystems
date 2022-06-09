@@ -37,6 +37,11 @@ public class UserController : Controller
         return View();
     }
 
+    public IActionResult Appointment()
+    {
+        return View();
+    }
+
     [Authorize]
     [HttpGet]
     public async Task<IActionResult> Profile()
