@@ -52,7 +52,7 @@ public class UserController : Controller
 
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> Appointment(AppointmentViewModel model)
+    public async Task<IActionResult> Appointment(Appointment model)
     {
 
         if (!ModelState.IsValid)
@@ -66,7 +66,7 @@ public class UserController : Controller
 
         var appointment = new Appointment
         {
-            AppointmentAddress = model.Address,
+            AppointmentAddress = model.AppointmentAddress,
             UserId = user.Id,
             Description = model.Description
         };
