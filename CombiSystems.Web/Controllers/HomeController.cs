@@ -49,6 +49,11 @@ public class HomeController : Controller
     // GET
     public IActionResult Index()
     {
+        if (HttpContext.User.Identity!.IsAuthenticated)
+        {
+            return RedirectToAction("Index", "User");
+        }
+
         return View();
     }
 
@@ -179,7 +184,16 @@ public class HomeController : Controller
         if (result.Succeeded)
         {
             var user = _userManager.FindByNameAsync(model.Email).Result;
-            
+
+            HttpContext.Session.SetString("User", System.Text.Json.JsonSerializer.Serialize<UserProfileViewModel>(new UserProfileViewModel
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                RegisterDate = user.RegisterDate
+            }));
+
 
             //model.ReturnUrl = string.IsNullOrEmpty(model.ReturnUrl) ? "~/" : model.ReturnUrl;
 

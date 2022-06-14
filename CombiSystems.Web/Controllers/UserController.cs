@@ -33,8 +33,12 @@ public class UserController : Controller
         _appointmentRepo = appointmentRepo;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var name = HttpContext.User.Identity!.Name;
+        var user = await _userManager.FindByNameAsync(name);
+
+
         return View();
     }
 
@@ -200,14 +204,7 @@ public class UserController : Controller
             var userl = await _userManager.FindByNameAsync(user.UserName);
             await _signInManager.SignInAsync(userl, true);
 
-            HttpContext.Session.SetString("User", System.Text.Json.JsonSerializer.Serialize<UserProfileViewModel>(new UserProfileViewModel
-            {
-                Name = user.Name,
-                Surname = user.Surname,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                RegisterDate = user.RegisterDate
-            }));
+
         }
         else
         {
