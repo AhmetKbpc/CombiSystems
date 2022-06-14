@@ -1,4 +1,21 @@
-﻿<div class="topbar">
+﻿@using CombiSystems.Core.Identity
+@using CombiSystems.Web.Extensions
+@using Microsoft.AspNetCore.Http;
+
+
+@{
+    var userString = Context.Session.GetString("User") == null ? "" : Context.Session.GetString("User");
+
+    var user = new UserProfileViewModel();
+    if (userString != "")
+    {
+        user = System.Text.Json.JsonSerializer.Deserialize<UserProfileViewModel>(userString);
+    }
+
+    var page = ViewContext.RouteData.Values["action"].ToString();
+}
+
+<div class="topbar">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="full">
             <button type="button" id="sidebarCollapse" class="sidebar_toggle"> <i class="fa fa-bars"> </i> </button>
@@ -14,7 +31,7 @@
                             <li>
                                 <a class="dropdown-toggle" data-toggle="dropdown">
                                     <img class="img-responsive rounded-circle" src="https://www.bootdey.com/app/webroot/img/Content/icons/64/PNG/64/packman.png" alt="#" />
-                                    <span class="name_user">Erhan</span>
+                                    <span class="name_user">@user.Name @user.Surname</span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" asp-controller="User" asp-action="Profile">My Profile</a>

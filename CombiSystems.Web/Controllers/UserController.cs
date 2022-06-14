@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -44,9 +45,20 @@ public class UserController : Controller
 
     [Authorize]
     [HttpGet]
-    public IActionResult Appointment()
+    public async Task<IActionResult> Appointment()
     {
-        var model = _appointmentRepo.Get().ToList();
+        var name = HttpContext.User.Identity!.Name;
+        var user = await _userManager.FindByNameAsync(name);
+        var list = _appointmentRepo.Get().ToList();
+        var model = new List<Appointment>();
+        foreach (var item in list)
+        {
+            if (user.Id ==item.UserId)
+            {
+                model.Add(item);
+            }
+        }
+
         return View(model);
     }
 
@@ -63,7 +75,8 @@ public class UserController : Controller
 
         var name = HttpContext.User.Identity!.Name;
         var user = await _userManager.FindByNameAsync(name);
-
+        
+ 
         var appointment = new Appointment
         {
             AppointmentAddress = model.AppointmentAddress,
@@ -187,6 +200,14 @@ public class UserController : Controller
             var userl = await _userManager.FindByNameAsync(user.UserName);
             await _signInManager.SignInAsync(userl, true);
 
+            HttpContext.Session.SetString("User", System.Text.Json.JsonSerializer.Serialize<UserProfileViewModel>(new UserProfileViewModel
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                RegisterDate = user.RegisterDate
+            }));
         }
         else
         {

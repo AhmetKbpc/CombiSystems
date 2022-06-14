@@ -11,6 +11,7 @@ builder.Services.AddDbContext<MyContext>(options => options.UseSqlServer(con1));
 
 builder.Services.AddServices();
 
+
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
@@ -27,6 +28,7 @@ else
     app.UseHsts();
 }
 
+app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

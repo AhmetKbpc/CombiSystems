@@ -59,6 +59,8 @@ namespace CombiSystems.Web.Extensions
             {
                 options.AddProfile<EntityMappingProfile>();
             });
+            
+            services.AddSession();
 
             return services;
         }
