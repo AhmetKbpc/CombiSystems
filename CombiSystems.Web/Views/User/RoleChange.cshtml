@@ -1,8 +1,12 @@
-﻿<div class="col-md-6">
+﻿@model List<RoleChangeViewModel>
+
+<table class="col-md-2">
+</table>
+<div class="col-md-8 my-5 ">
     <div class="white_shd full margin_bottom_30">
         <div class="full graph_head">
             <div class="heading1 margin_0">
-                <h2>Bordered Table</h2>
+                <h2>Users Roles</h2>
             </div>
         </div>
         <div class="table_section padding_infor_info">
@@ -10,38 +14,27 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Email</th>
-                            <th>Role</th>
+                            <th>Roles</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                            <td>
-                                <select name="cars" id="cars">
-                                <option value="volvo">User</option>
-                                <option value="saab">Technician</option>
- 
-                            </select>
-                             <button type="button" id="sidebarCollapse" class="btn btn-success">ONAYLA</button>
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>Mary</td>
-                            <td>Moe</td>
-                            <td>mary@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>July</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                        </tr>
-
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Name</td>
+                                <td>@user.Surname</td>
+                                <td>@user.Email</td>
+                                <td>@string.Join(" , ", user.Role.ToList())</td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
+
                 </table>
             </div>
         </div>

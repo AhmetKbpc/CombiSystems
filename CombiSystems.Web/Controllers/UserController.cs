@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -21,16 +23,18 @@ public class UserController : Controller
     private readonly IEmailService _emailService;
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IRepository<Appointment,int> _appointmentRepo;
-
+    private readonly RoleManager<ApplicationRole> _roleManager;
     public UserController(UserManager<ApplicationUser> userManager,
         IEmailService emailService,
         SignInManager<ApplicationUser> signInManager, 
-        IRepository<Appointment,int> appointmentRepo)
+        IRepository<Appointment,int> appointmentRepo,
+        RoleManager<ApplicationRole> roleManager)
     {
         _userManager = userManager;
         _emailService = emailService;
         _signInManager = signInManager;
         _appointmentRepo = appointmentRepo;
+        _roleManager = roleManager;
     }
 
     public async Task<IActionResult> Index()
@@ -42,9 +46,30 @@ public class UserController : Controller
         return View();
     }
 
-    public IActionResult RoleChange()
+    [Authorize]
+    [HttpGet]
+    public async Task<IActionResult> RoleChangeAsync()
     {
-        return View();
+        //var model = _userManager.Users.ToList();
+
+        var users = await _userManager.Users.ToListAsync();
+        var roleChangeViewModel = new List<RoleChangeViewModel>();
+        foreach (ApplicationUser user in users)
+        {
+            var thisViewModel = new RoleChangeViewModel();
+            thisViewModel.UserName = user.Name;
+            thisViewModel.Email = user.Email;
+            thisViewModel.Name = user.Name;
+            thisViewModel.Surname = user.Surname;
+            thisViewModel.Role = await _userManager.GetRolesAsync(user);
+            roleChangeViewModel.Add(thisViewModel);
+        }
+
+        return View(roleChangeViewModel);
+    }
+    private async Task<List<string>> GetUserRole(ApplicationUser user)
+    {
+        return new List<string>(await _userManager.GetRolesAsync(user));
     }
 
     [Authorize]
@@ -244,6 +269,8 @@ public class UserController : Controller
 
         return RedirectToAction(nameof(EditProfile));
     }
+
+
 
 
 
